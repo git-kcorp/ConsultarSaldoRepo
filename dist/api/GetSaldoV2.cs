@@ -2,33 +2,20 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using MailKit.Net.Imap;
-using MailKit.Search;
-using MailKit.Security;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
-using MimeKit;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Gmail.v1.Data;
 using Google.Apis.Auth.OAuth2;
-using System.IO;
-using System.Threading;
-using Google.Apis.Util.Store;
 using Google.Apis.Services;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using System.Globalization;
 
-
-
-
-namespace GetSaldoFunction
+namespace api
 {
-    public static class GetSaldo
+    public static class GetSaldoV2
     {
 
         static decimal ExtraerMonto(string texto)
@@ -43,9 +30,9 @@ namespace GetSaldoFunction
             return 0;
         }
 
-        [FunctionName("GetSaldo")]
+        [FunctionName("GetSaldoV2")]
         public static async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetSaldo")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "GetSaldoV2")] HttpRequest req,
         ILogger log)
         {
 
@@ -77,7 +64,7 @@ namespace GetSaldoFunction
 
 
             var desde = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1).ToString("yyyy/MM/dd");
-            
+
             var hasta = DateTime.UtcNow.ToString("yyyy/MM/dd");
 
             var request = service.Users.Messages.List("me");
