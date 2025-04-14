@@ -22,7 +22,7 @@ namespace GetSaldoFunction
             var match = regex.Match(texto);
             if (match.Success)
             {
-                if (decimal.TryParse(match.Groups[1].Value.Replace(".", "").Replace(",", "."), out var result))
+                if (decimal.TryParse(match.Groups[1].Value.Replace(".", ""), out var result))
                     return result;
             }
             return 0;
