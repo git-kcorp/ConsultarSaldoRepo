@@ -18,7 +18,7 @@ export default tseslint.config({
     ...tseslint.configs.recommendedTypeChecked,
     // Alternatively, use this for stricter rules
     ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
+    // Optionally, add this for stylistic rules raro
     ...tseslint.configs.stylisticTypeChecked,
   ],
   languageOptions: {
