@@ -1,0 +1,47 @@
+.dineroFormato {
+    color: #fff;
+    font-size: 22px;
+  }
+  
+  .dineroGastado {
+    color: #00ff88;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .dineroAGastar {
+    color: #ccc;
+    font-size: 20px;
+    margin-left: 6px;
+  }
+
+  .rowContainer {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+
+  .progressContainer {
+    width: 80%;
+    height: 12px;
+    background-color: #555;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  
+  .progressBar {
+    height: 100%;
+    background-color: #00ff88;
+  }
+  
+  .porcentajeText {
+    margin-top: 5px;
+    color: #fff;
+  }
+  .gastoTipoTitulo {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }

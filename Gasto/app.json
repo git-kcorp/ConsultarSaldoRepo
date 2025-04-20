@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "d8e8c301-1a60-4ba0-bf01-abab6f70052e"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.kcorp.saldo"
+    }
+  }
+}
