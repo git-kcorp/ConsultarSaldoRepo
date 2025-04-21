@@ -22,9 +22,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("access_token");
-    if (storedToken) {
-      setToken(storedToken);
+    const stored = localStorage.getItem("access_token");
+    if (stored) {
+      try {
+        const tokenData = JSON.parse(stored);
+        if (Date.now() > tokenData.expiry) {
+          localStorage.removeItem("access_token");
+          setToken(null);
+          window.location.reload();
+        } else {
+          setToken(tokenData.value);
+        }
+      } catch (err) {
+        console.error("Error leyendo el token del localStorage:", err);
+        localStorage.removeItem("access_token");
+        setToken(null);
+        window.location.reload();
+      }
     }
   }, []);
 
@@ -34,8 +48,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         "879160549033-rlq8qd7topa3ostdagjkd4ae6f65jsmc.apps.googleusercontent.com",
       scope: "https://www.googleapis.com/auth/gmail.readonly",
       callback: (tokenResponse: any) => {
-        setToken(tokenResponse.access_token);
-        localStorage.setItem("access_token", tokenResponse.access_token);
+        const tokenData = {
+          value: tokenResponse.access_token,
+          expiry: Date.now() + 3600 * 1000,
+        };
+        setToken(tokenData.value);
+        localStorage.setItem("access_token", JSON.stringify(tokenData));
       },
     });
 
