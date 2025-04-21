@@ -1,6 +1,6 @@
 
 const fetchGetSaldo = async (credential: string) => {
-  const response = await fetch("api/GetSaldoV2", {
+  const response = await fetch("https://consultarsaldofunction.azurewebsites.net/api/GetSaldoV2", {
     method: "GET",
     headers: {
       Authorization: `Bearer ${credential}`,
